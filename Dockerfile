@@ -28,4 +28,5 @@ EXPOSE 10000
 
 # Command to run the application using Gunicorn
 # This command automatically runs argos_core.py, which pre-loads the models.
-CMD ["gunicorn", "--bind", "0.0.0.0:10000", "--workers", "2", "app:app"]
+# Use a higher timeout for the workers to allow the large models to load
+CMD ["gunicorn", "--bind", "0.0.0.0:10000", "--workers", "2", "--timeout", "60", "app:app"]
